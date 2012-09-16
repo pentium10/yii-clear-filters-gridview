@@ -22,7 +22,7 @@ Donate
 Resources
 ---------------
 
-- [Extension page](http://www.yiiframework.com/extension/clear-filters-gridview/)
+- **[Extension page](http://www.yiiframework.com/extension/clear-filters-gridview/) (don't forget to cast your support vote)**
 - [Report a bug](http://github.com/pentium10/yii-clear-filters-gridview/issues "Report a bug")
 - [Forum](http://www.yiiframework.com/forum/index.php?/topic/15845-extension-clear-filters-gridview/ "Forum")
 - [Remember Filters Gridview extension](http://www.yiiframework.com/extension/remember-filters-gridview)
