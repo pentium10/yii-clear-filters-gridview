@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Yii-clear-filters-gridview by pentium10</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Yii-clear-filters-gridview</h1>
+        <p class="header">This Yii extension helps you to clear remembered filter values on GridViews, by using the additional top right image.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/pentium10/yii-clear-filters-gridview/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/pentium10/yii-clear-filters-gridview/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/pentium10/yii-clear-filters-gridview">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/pentium10">pentium10</a></p>
+
+
+      </header>
+      <section>
+        <h1>yii-clear-filters-gridview</h1>
+
+<p>The EButtonColumnWithClearFilters Yii extension adds up some functionality to the default possibilites of CButtonColumn implementation when you use extensions to remember filter values. This extension helps you to <strong>clear the remembered filter values</strong>.</p>
+
+<p>Check out <a href="http://www.yiiframework.com/extension/remember-filters-gridview/">Remember Filters Gridview</a> extension also.</p>
+
+<p><strong>An image will be placed in the top column(on same line of AJAX filters). When clicked the filters will be cleared, the content will be refreshed with all items available.</strong></p>
+
+<p><img src="https://raw.github.com/pentium10/yii-clear-filters-gridview/master/res/clear_filters_10.png" alt="Please login to see the Demo image!" title="Demo"></p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>Yii 1.1</li>
+</ul><h2>Donate</h2>
+
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=K9TM6HR8JQ4Z8" title="Donate">Click here to donate</a></p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><strong><a href="http://www.yiiframework.com/extension/clear-filters-gridview/">Extension page</a> (don't forget to cast your support vote)</strong></li>
+<li><a href="http://github.com/pentium10/yii-clear-filters-gridview/issues" title="Report a bug">Report a bug</a></li>
+<li><a href="http://www.yiiframework.com/forum/index.php?/topic/15845-extension-clear-filters-gridview/" title="Forum">Forum</a></li>
+<li><a href="http://www.yiiframework.com/extension/remember-filters-gridview">Remember Filters Gridview extension</a></li>
+</ul><h2>Usage</h2>
+
+<h2>Step 1</h2>
+
+<p>To use this extension, copy this file to your components/ directory, add 'import' =&gt; 'application.components.EButtonColumnWithClearFilters', [...] to your config/main.php and use this column on each widget's Column array you would like to inherit the new possibilities:</p>
+
+<div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'class'</span><span class="o">=&gt;</span><span class="s1">'EButtonColumnWithClearFilters'</span><span class="p">,</span>
+   <span class="c1">//'clearVisible'=&gt;true,</span>
+   <span class="c1">//'onClick_BeforeClear'=&gt;'alert('this js fragment executes before clear');',</span>
+   <span class="c1">//'onClick_AfterClear'=&gt;'alert('this js fragment executes after clear');',</span>
+   <span class="c1">//'clearHtmlOptions'=&gt;array('class'=&gt;'custom-clear'),</span>
+   <span class="c1">//'imageUrl'=&gt;'/path/to/custom/image/delete.png',</span>
+   <span class="c1">//'url'=&gt;'Yii::app()-&gt;controller-&gt;createUrl(Yii::app()-&gt;controller-&gt;action-&gt;ID,array("clearFilters"=&gt;1))',</span>
+   <span class="c1">//'label'=&gt;'My Custom Label',</span>
+ <span class="p">),</span>
+</pre></div>
+
+<p>All posible customizations have been enumerated above, you shall comment out those that you won't override. The minial setup is just the class type for the Columns. In addition to this you can still use/override the CButtonColumn to suit your needs. </p>
+
+<ul>
+<li><p><strong>clearVisible</strong>: a PHP expression for determining whether the button is visible</p></li>
+<li><p><strong>onClick_BeforeClear</strong>: If you want to execute certain JS code before the filters are cleared out, use this property to pass your custom code. You are allowed to use 'return false;' only, when  you want to stop the clear to happen. This will stop all further JS code, and HTTP request to be executed. You are not allowed to use 'return true;' it will break the components usage.</p></li>
+<li><p><strong>onClick_AfterClear</strong>: If you want to execute certain JS code after clear, but before the AJAX call use this property to pass your custom code. You are allowed to use 'return false' only, when you want to stop the AJAX call to happen. This will stop the form to be reloaded.  If you want to clear the form by classic GET request, and not by ajax you shall 'return true;' here.</p></li>
+<li><p><strong>clearHtmlOptions</strong>: Associative array of html elements to be passed for the button 
+Default is: array('class'=&gt;'clear','id'=&gt;'cbcwr_clear','style'=&gt;'text-align:center;display:block;');</p></li>
+<li><p><strong>imageUrl</strong>: image URL of the button. If not set or false, a text link is used 
+Default is: $this-&gt;grid-&gt;baseScriptUrl.'/delete.png'</p></li>
+<li><p><strong>url</strong>: a PHP expression for generating the URL of the button
+Default is: 'Yii::app()-&gt;controller-&gt;createUrl(Yii::app()-&gt;controller-&gt;action-&gt;ID,array("clearFilters"=&gt;1))'</p></li>
+<li><p><strong>label</strong>: Label tag to be used on the button when no URL is given
+Default is: Clear Filters</p></li>
+</ul><h2>Step 2</h2>
+
+<p>If you are using the <a href="http://www.yiiframework.com/extension/remember-filters-gridview" title="http://www.yiiframework.com/extension/remember-filters-gridview">Remember Filters Gridview</a> extension, you need to add to your controller the following code. This is placed in the action method that handles the gridview display, after you have initialized your model.</p>
+
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nx">Yii</span><span class="o">::</span><span class="na">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">'clearFilters'</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">EButtonColumnWithClearFilters</span><span class="o">::</span><span class="na">clearFilters</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span><span class="nv">$model</span><span class="p">);</span><span class="c1">//where $this is the controller</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Sample actionAdmin()</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">actionAdmin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">registration</span><span class="p">(</span><span class="s1">'search'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nx">Yii</span><span class="o">::</span><span class="na">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">'clearFilters'</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">EButtonColumnWithClearFilters</span><span class="o">::</span><span class="na">clearFilters</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span><span class="nv">$model</span><span class="p">);</span><span class="c1">//where $this is the controller</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'model'</span> <span class="o">=&gt;</span> <span class="nv">$model</span><span class="p">,</span>
+        <span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If you don't need the clear filters button capabilities you can also pass a <code>clearFilters</code> parameter with a 1(one) value to the controller, for this you can use a link or a button. </p>
+
+<p>This extension has also a pair <a href="http://www.yiiframework.com/extension/remember-filters-gridview" title="http://www.yiiframework.com/extension/remember-filters-gridview">Remember Filters Gridview</a></p>
+
+<p>yii, clear, filters, cgridview, gridview, store, reload, controller, model, behavior, interface, widget, stick, scenario</p>
+
+<h2>Change Log </h2>
+
+<p><a href="http://github.com/pentium10/yii-clear-filters-gridview/blob/master/CHANGELOG.md">CHANGELOG.md</a></p>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it.</li>
+<li>Create a branch (<code>git checkout -b my_enhancement_name</code>)</li>
+<li>Commit your changes (<code>git commit -am "Enhanced Javascript"</code>)</li>
+<li>Push to the branch (<code>git push origin my_enhancement_name</code>)</li>
+<li>Open a <a href="http://github.com/pentium10/yii-clear-filters-gridview/pulls">Pull Request</a>
+</li>
+<li>Enjoy a refreshing Diet Coke and wait</li>
+</ol>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
