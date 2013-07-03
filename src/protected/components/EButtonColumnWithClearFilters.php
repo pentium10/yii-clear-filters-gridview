@@ -19,7 +19,7 @@
 * @version 1.0
 
 * The EButtonColumnWithClearFilters extension adds up some functionality to the default
-* possibilites of zii�s CButtonColumn implementation.
+* possibilites of zii's CButtonColumn implementation.
 *
 * An image will be placed in the top column(on same line of AJAX filters). When clicked
 * the filters will be cleared, the content will be refreshed with all items available.
@@ -320,6 +320,4 @@ HTMLEND;
         }
         $controller->redirect(array($controller->action->ID));
     }
-
 }
-?>
