@@ -19,7 +19,7 @@
 * @version 1.0
 
 * The EButtonColumnWithClearFilters extension adds up some functionality to the default
-* possibilites of zii´s CButtonColumn implementation.
+* possibilites of ziiï¿½s CButtonColumn implementation.
 *
 * An image will be placed in the top column(on same line of AJAX filters). When clicked
 * the filters will be cleared, the content will be refreshed with all items available.
@@ -253,7 +253,7 @@ function cbcwr_clearFields() {
     try
     {    
         $('#{$this->grid->id} :input').clearFields(); // this will clear all input in the current grid
-        {$_beforeAjax} $('#{$this->grid->id} :input').first().trigger('change');// to submit the form
+        {$_beforeAjax} $('#{$this->grid->id} .{$this->grid->filterCssClass} :input').first().trigger('change');// to submit the form
         return false;
     }
     catch(cbwr_err)
