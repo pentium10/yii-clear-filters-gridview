@@ -1,7 +1,7 @@
 <?php
 /**
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
+*
 * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the 
 * documentation and/or other materials provided with the distribution.
@@ -17,7 +17,7 @@
 * @author Marton Kodok http://www.yiiframework.com/forum/index.php?/user/8824-pentium10/
 * @link http://www.yiiframework.com/
 * @version 1.0
-
+*
 * The EButtonColumnWithClearFilters extension adds up some functionality to the default
 * possibilites of zii's CButtonColumn implementation.
 *
@@ -168,72 +168,73 @@ class EButtonColumnWithClearFilters extends CButtonColumn {
     public function init()
     {
 
-        //initializ variables
-        $_customJS=null;
-        $_beforeAjax=null;
-        $_click=null;
-        $_visible=null;
-        $_options=null;
-        $_imageUrl=null;
+        if ($this->grid->filter) {
+            //initializ variables
+            $_customJS=null;
+            $_beforeAjax=null;
+            $_click=null;
+            $_visible=null;
+            $_options=null;
+            $_imageUrl=null;
 
-        //define defaults
-        $_optionsDefault=array('class'=>'clear','id'=>'cbcwr_clear','style'=>'text-align:center;display:block;');
+            //define defaults
+            $_optionsDefault=array('class'=>'clear','id'=>'cbcwr_clear','style'=>'text-align:center;display:block;');
 
-        // handle custom JS setup
-        if (!empty($this->onClick_BeforeClear)) {
-            $_customJS=$this->onClick_BeforeClear.';';
-        }
-        if (!empty($this->onClick_AfterClear)) {
-            $_beforeAjax=$this->onClick_AfterClear.";\r\n";
-        }
-        // turn custom setup into representative output
-        $_click="js:function() {{$_customJS} return cbcwr_clearFields() }";
-        $_visible=is_bool($this->clearVisible)?( ($this->clearVisible)?'true':'false'):$this->clearVisible;
-        if (empty($this->clearHtmlOptions)) {
-            $this->clearHtmlOptions=array();
-        }
-        $_options=@array_merge($_optionsDefault,$this->clearHtmlOptions);
+            // handle custom JS setup
+            if (!empty($this->onClick_BeforeClear)) {
+                $_customJS=$this->onClick_BeforeClear.';';
+            }
+            if (!empty($this->onClick_AfterClear)) {
+                $_beforeAjax=$this->onClick_AfterClear.";\r\n";
+            }
+            // turn custom setup into representative output
+            $_click="js:function() {{$_customJS} return cbcwr_clearFields() }";
+            $_visible=is_bool($this->clearVisible)?( ($this->clearVisible)?'true':'false'):$this->clearVisible;
+            if (empty($this->clearHtmlOptions)) {
+                $this->clearHtmlOptions=array();
+            }
+            $_options=@array_merge($_optionsDefault,$this->clearHtmlOptions);
 
-        if (!empty($this->imageUrl)) {
-            $_imageUrl=$this->imageUrl;
-        } else {
-            $_imageUrl=$this->grid->baseScriptUrl.'/delete.png';
-        }
+            if (!empty($this->imageUrl)) {
+                $_imageUrl=$this->imageUrl;
+            } else {
+                $_imageUrl=$this->grid->baseScriptUrl.'/delete.png';
+            }
 
-        if (!empty($this->url)) {
-            $_url=$this->url;
-        } else {
-            $_url='Yii::app()->controller->createUrl(Yii::app()->controller->action->ID,array("clearFilters"=>1))';
-        }
+            if (!empty($this->url)) {
+                $_url=$this->url;
+            } else {
+                $_url='Yii::app()->controller->createUrl(Yii::app()->controller->action->ID,array("clearFilters"=>1))';
+            }
 
-        if (!empty($this->label)) {
-            $_label=Yii::t('app',$this->label);
-        } else {
-            $_label=Yii::t('app','Clear Filters');
-        }
-
-
-        // define the button structure to be used
-        $this->_clearButton = array(
-        'label'=>$_label,     // text label of the button
-        'url'=>$_url,       // a PHP expression for generating the URL of the button
-        'imageUrl'=>$_imageUrl,  // image URL of the button. If not set or false, a text link is used
-        'options'=>$_options, // HTML options for the button tag
-        'click'=>$_click,     // a JS function to be invoked when the button is clicked
-        'visible'=>$_visible,   // a PHP expression for determining whether the button is visible
-        );
+            if (!empty($this->label)) {
+                $_label=Yii::t('app',$this->label);
+            } else {
+                $_label=Yii::t('app','Clear Filters');
+            }
 
 
+            // define the button structure to be used
+            $this->_clearButton = array(
+            'label'=>$_label,     // text label of the button
+            'url'=>$_url,       // a PHP expression for generating the URL of the button
+            'imageUrl'=>$_imageUrl,  // image URL of the button. If not set or false, a text link is used
+            'options'=>$_options, // HTML options for the button tag
+            'click'=>$_click,     // a JS function to be invoked when the button is clicked
+            'visible'=>$_visible,   // a PHP expression for determining whether the button is visible
+            );
 
-        $this->buttons=CMap::mergeArray(
-            $this->buttons,
-            array('clear' => $this->_clearButton,)
-        );
 
-        $this->_templateB=$this->template;
-        $this->template.="{clear}";
 
-        $script=<<<HTMLEND
+            $this->buttons=CMap::mergeArray(
+                $this->buttons,
+                array('clear' => $this->_clearButton,)
+            );
+
+            $this->_templateB=$this->template;
+            $this->template.="{clear}";
+
+            $script=<<<HTMLEND
 $.fn.clearFields = $.fn.clearInputs = function() {
     return this.each(function() {
         var t = this.type, tag = this.tagName.toLowerCase();
@@ -262,7 +263,8 @@ function cbcwr_clearFields() {
     }
 }
 HTMLEND;
-        Yii::app()->clientScript ->registerScript(__CLASS__.'clearFields',$script,CClientScript::POS_HEAD);
+            Yii::app()->clientScript ->registerScript(__CLASS__.'clearFields',$script,CClientScript::POS_HEAD);
+        }
 
         // call parent to initialize other buttons
         parent::init();
