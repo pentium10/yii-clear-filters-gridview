@@ -16,7 +16,7 @@
 *
 * @author Marton Kodok http://www.yiiframework.com/forum/index.php?/user/8824-pentium10/
 * @link http://www.yiiframework.com/
-* @version 1.0.1
+* @version 1.0.2
 *
 * The EButtonColumnWithClearFilters extension adds up some functionality to the default
 * possibilites of zii's CButtonColumn implementation.

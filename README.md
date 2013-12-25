@@ -27,6 +27,20 @@ Resources
 - [Forum](http://www.yiiframework.com/forum/index.php?/topic/15845-extension-clear-filters-gridview/ "Forum")
 - [Remember Filters Gridview extension](http://www.yiiframework.com/extension/remember-filters-gridview)
 
+Install
+---------
+
+We recommend installing the extension with [Composer](http://getcomposer.org/). Add this to the `require` section of your `composer.json`:
+
+    "pentium10/yii-clear-filters-gridview" : "dev-master"
+
+You also need to include composer's autoloader:
+
+```php
+    require_once __DIR__.'/protected/vendor/autoload.php';
+```
+
+
 Usage
 ---------
 

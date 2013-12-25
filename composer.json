@@ -1,0 +1,17 @@
+{
+    "name": "pentium10/yii-clear-filters-gridview",
+    "description": "This yii extension helps you to clear remembered filter values on GridViews, by using the additional top right image.",
+    "keywords": ["yii", "clear",  "filters",  "cgridview",  "gridview",  "reset",  "empty",  "remember",  "controller",  "model",  "behavior",  "interface",  "widget"],
+    "type": "library",
+    "license": "BSD-2-Clause",
+    "support": {
+        "issues": "https://github.com/pentium10/yii-clear-filters-gridview/issues"
+    },
+	"require": {
+        "php": ">=5.1.0",
+        "yiisoft/yii": "*"
+    },
+	"autoload": {
+        "classmap": ["components/EButtonColumnWithClearFilters.php"]
+    }
+}
